@@ -4,19 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Empresa {
+public class Estabelecimento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nome;
-	private String cnpj;
-	private String endereco;
-	private String telefone;
-	private int quant_motos;
-	private int quant_carros;
+	
+	@NotBlank(message = "Nome é obrigatório")
+    private String nome;
+
+    @NotBlank(message = "CNPJ é obrigatório")
+    private String cnpj;
+
+    @NotBlank(message = "Endereço é obrigatório")
+    private String endereco;
+
+    @NotBlank(message = "Telefone é obrigatório")
+    private String telefone;
+
+    @NotNull(message = "Quantidade de motos é obrigatória")
+    private int quant_motos;
+
+    @NotNull(message = "Quantidade de carros é obrigatória")
+    private int quant_carros;
 
 	public int getId() {
 		return id;
