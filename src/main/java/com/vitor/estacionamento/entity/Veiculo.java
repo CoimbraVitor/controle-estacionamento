@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 
 @Entity
-public class Carro {
+public class Veiculo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
