@@ -1,41 +1,46 @@
 package com.vitor.estacionamento.entity;
 
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
-
 
 @Entity
 public class Veiculo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
-    @NotNull(message = "Marca é obrigatória")
-    private String marca;
+	@NotNull(message = "Marca é obrigatória")
+	private String marca;
 
-    @NotNull(message = "Modelo é obrigatório")
-    private String modelo;
+	@NotNull(message = "Modelo é obrigatório")
+	private String modelo;
 
-    @NotNull(message = "Cor é obrigatória")
-    private String cor;
+	@NotNull(message = "Cor é obrigatória")
+	private String cor;
 
-    @NotNull(message = "Placa é obrigatória")
-    private String placa;
+	@NotNull(message = "Placa é obrigatória")
+	private String placa;
 
-    @NotNull(message = "Tipo de veículo é obrigatório")
-    private TipoVeiculo tipo;
+	@Enumerated(EnumType.STRING)
+	@NotNull(message = "Tipo de veículo é obrigatório")
+	private TipoVeiculo tipo;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public void setTipo(TipoVeiculo tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getMarca() {
@@ -74,8 +79,8 @@ public class Veiculo {
 		return tipo;
 	}
 
-	public void setTipo(TipoVeiculo tipo) {
-		this.tipo = tipo;
+	public void setTipo(String tipo) {
+		this.tipo = TipoVeiculo.valueOf(tipo.toUpperCase());
 	}
 
 }

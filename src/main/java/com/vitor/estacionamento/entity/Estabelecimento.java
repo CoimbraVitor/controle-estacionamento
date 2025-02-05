@@ -12,31 +12,31 @@ public class Estabelecimento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private Integer id;
+
 	@NotBlank(message = "Nome é obrigatório")
-    private String nome;
+	private String nome;
 
-    @NotBlank(message = "CNPJ é obrigatório")
-    private String cnpj;
+	@NotBlank(message = "CNPJ é obrigatório")
+	private String cnpj;
 
-    @NotBlank(message = "Endereço é obrigatório")
-    private String endereco;
+	@NotBlank(message = "Endereço é obrigatório")
+	private String endereco;
 
-    @NotBlank(message = "Telefone é obrigatório")
-    private String telefone;
+	@NotBlank(message = "Telefone é obrigatório")
+	private String telefone;
 
-    @NotNull(message = "Quantidade de motos é obrigatória")
-    private int quant_motos;
+	@NotNull(message = "Quantidade de motos é obrigatória")
+	private int quant_motos;
 
-    @NotNull(message = "Quantidade de carros é obrigatória")
-    private int quant_carros;
+	@NotNull(message = "Quantidade de carros é obrigatória")
+	private int quant_carros;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
