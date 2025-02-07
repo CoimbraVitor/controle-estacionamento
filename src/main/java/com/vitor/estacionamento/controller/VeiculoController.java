@@ -1,4 +1,4 @@
-package com.vitor.estacionamento.resource;
+package com.vitor.estacionamento.controller;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import com.vitor.estacionamento.service.VeiculoService;
 
 @RestController
 @RequestMapping("veiculo")
-public class VeiculoResource {
+public class VeiculoController {
 
 	private final VeiculoService service;
 
-	public VeiculoResource(VeiculoService service) {
+	public VeiculoController(VeiculoService service) {
 		this.service = service;
 	}
 
