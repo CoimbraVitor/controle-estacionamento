@@ -4,14 +4,7 @@ import java.time.LocalDateTime;
 
 import com.vitor.estacionamento.entity.enums.Status;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Fluxo {
@@ -19,9 +12,13 @@ public class Fluxo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Integer estabelecimentoId;
+	@ManyToOne
+	@JoinColumn(name = "estabelecimento_id", nullable = false)
+	private Estabelecimento estabelecimento;
 
-	private Integer veiculoId;
+	@ManyToOne
+	@JoinColumn(name = "veiculo_id", nullable = false)
+	private Veiculo veiculo;
 
 	private LocalDateTime horarioEntrada;
 	private LocalDateTime horarioSaida;
@@ -47,20 +44,20 @@ public class Fluxo {
 		this.id = id;
 	}
 
-	public Integer getEstabelecimentoId() {
-		return estabelecimentoId;
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
 	}
 
-	public void setEstabelecimentoId(Integer estabelecimentoId) {
-		this.estabelecimentoId = estabelecimentoId;
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
 	}
 
-	public Integer getVeiculoId() {
-		return veiculoId;
+	public Veiculo getVeiculo() {
+		return veiculo;
 	}
 
-	public void setVeiculoId(Integer veiculoId) {
-		this.veiculoId = veiculoId;
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 
 	public LocalDateTime getHorarioEntrada() {
@@ -86,5 +83,4 @@ public class Fluxo {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
 }

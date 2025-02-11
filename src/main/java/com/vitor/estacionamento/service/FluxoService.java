@@ -33,8 +33,8 @@ public class FluxoService {
 				.orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
 
 		Fluxo fluxo = new Fluxo();
-		fluxo.setEstabelecimentoId(estabelecimento.getId());
-		fluxo.setVeiculoId(veiculo.getId());
+		fluxo.setEstabelecimento(estabelecimento);
+		fluxo.setVeiculo(veiculo);
 
 		this.fluxoRepository.save(fluxo);
 
