@@ -32,29 +32,33 @@ public class FluxoService {
 		Veiculo veiculo = veiculoRepository.findById(veiculoId)
 				.orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
 
+		if (fluxoRepository.findFluxoAtivoByVeiculoEEstabelecimento(veiculoId, estabelecimentoId).isPresent()) {
+		    throw new RuntimeException("Veículo já está dentro deste estabelecimento.");
+		}
+
+
 		Fluxo fluxo = new Fluxo();
 		fluxo.setEstabelecimento(estabelecimento);
 		fluxo.setVeiculo(veiculo);
 
-		this.fluxoRepository.save(fluxo);
+		fluxoRepository.save(fluxo);
 
 		return fluxo;
-
 	}
-	
-    public Fluxo registrarSaida(Long movimentoId) {
-    	Fluxo movimento = fluxoRepository.findById(movimentoId)
-            .orElseThrow(() -> new RuntimeException("Movimento não encontrado"));
 
-        if (movimento.getStatus() == Status.SAIU) {
-            throw new RuntimeException("Este veículo já saiu do estacionamento!");
-        }
+	public Fluxo registrarSaida(Long movimentoId) {
+		Fluxo movimento = fluxoRepository.findById(movimentoId)
+				.orElseThrow(() -> new RuntimeException("Movimento não encontrado"));
 
-        movimento.registrarSaida();
-        return fluxoRepository.save(movimento);
-    }
+		if (movimento.getStatus() == Status.SAIU) {
+			throw new RuntimeException("Este veículo já saiu do estacionamento!");
+		}
 
-    public List<Fluxo> listarVeiculosNoEstacionamento(Long estabelecimentoId) {
-        return fluxoRepository.findByEstabelecimentoIdAndStatus(estabelecimentoId, Status.DENTRO);
-    }
+		movimento.registrarSaida();
+		return fluxoRepository.save(movimento);
+	}
+
+	public List<Fluxo> listarVeiculosNoEstacionamento(Long estabelecimentoId) {
+		return fluxoRepository.findByEstabelecimentoIdAndStatus(estabelecimentoId, Status.DENTRO);
+	}
 }
